@@ -1,29 +1,19 @@
-// Importamos createRoot para montar la aplicación en el DOM
-import { createRoot } from 'react-dom/client'
-// Importamos los estilos de Bootstrap para una UI rápida
-import 'bootstrap/dist/css/bootstrap.min.css'
-// Importamos nuestros estilos personalizados
-import './styles/global.css'
-// Importamos BrowserRouter para habilitar el enrutado de la aplicación
-import { BrowserRouter } from 'react-router-dom'
-// Importamos el proveedor de autenticación que gestionará token y usuario
-import { AuthProvider } from './context/AuthContext.jsx'
-// Importamos el proveedor del carrito
-import { CartProvider } from './context/CartContext.jsx'
-// Importamos el componente principal que ahora contendrá las rutas
-import App from './App.jsx'
+import { createRoot } from 'react-dom/client';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './styles/global.css';
 
-// Montamos la aplicación en el elemento con id="root"
+import { HashRouter } from 'react-router-dom';
+
+import { AuthProvider } from './context/AuthContext.jsx';
+import { CartProvider } from './context/CartContext.jsx';
+import App from './App.jsx';
+
 createRoot(document.getElementById('root')).render(
-  // Envolvemos con BrowserRouter para habilitar rutas
-  <BrowserRouter>
-    {/* Envolvemos con AuthProvider para compartir sesión y token */}
+  <HashRouter>
     <AuthProvider>
-      {/* Envolvemos con CartProvider para compartir carrito */}
       <CartProvider>
-        {/* Renderizamos el componente principal (definirá las rutas) */}
         <App />
       </CartProvider>
     </AuthProvider>
-  </BrowserRouter>,
-)
+  </HashRouter>
+);
